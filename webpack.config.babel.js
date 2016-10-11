@@ -40,7 +40,7 @@ export default {
     },
   },
 
-  devtool: 'inline-sourdce-map',
+  devtool: 'source-map',
 
   devServer: {
     contentBase: './src',
