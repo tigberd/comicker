@@ -13,7 +13,7 @@ export default {
   ],
 
   entry: {
-    bundle: './src/index.js',
+    bundle: './src/app.js',
   },
   output: {
     filename: path.join('[name].js'),

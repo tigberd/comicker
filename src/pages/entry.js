@@ -1,6 +1,8 @@
 import Vue from 'vue';
-import template from './navbar.html';
+
+import template from './entry.html';
 
 export default Vue.extend({
   template,
 });
+
