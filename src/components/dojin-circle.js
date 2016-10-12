@@ -5,16 +5,16 @@ import './dojin-circle.scss';
 export default Vue.extend({
   template,
 
-  props: ['name'],
-
   data: function data() {
     return {
       clazz: '',
     };
   },
+  props: ['shimaId', 'circle-id'],
 
   methods: {
     onClick: function onClick() {
+      console.log(this);
       if (this.clazz === '') {
         this.clazz = 'btn-1';
       } else if (this.clazz === 'btn-1') {

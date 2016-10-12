@@ -1,0 +1,49 @@
+<div>
+  <nav class="navbar navbar-dark bg-inverse" :class="editableClass">
+    <a class="navbar-brand" href="/">Comicker</a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">登録サークル一覧</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east1" class="nav-link">東1</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east2" class="nav-link">東2</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east3" class="nav-link">東3</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east4" class="nav-link">東4</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east5" class="nav-link">東5</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="east6" class="nav-link">東6</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">西1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">西2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">西3</a>
+      </li>
+    </ul>
+
+    <template v-if="editable === false">
+      <form class="form-inline pull-xs-right">
+        <button class="btn btn-outline-info" type="submit" @click.prevent="editMode()">編集モードにする</button>
+      </form>
+    </template>
+    <template v-if="editable === true">
+      <form class="form-inline pull-xs-right">
+        <button class="btn btn-outline-info" type="submit" @click.prevent="normalMode()">通常モードにする</button>
+      </form>
+    </template>
+  </nav>
+  <router-view></router-view>
+</div>

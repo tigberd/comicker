@@ -8,7 +8,7 @@ import './shima.scss';
 export default Vue.extend({
   template,
 
-  props: ['tl', 'tr', 'bl', 'br'],
+  props: ['shima-id', 'tl', 'tr', 'bl', 'br'],
 
   components: {
     'dojin-circle': dojinCircle,
