@@ -40,7 +40,7 @@ export default {
     },
   },
 
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 
   devServer: {
     contentBase: './src',
