@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 0,
     editable: false,
   },
   mutations: {
@@ -14,6 +13,16 @@ export default new Vuex.Store({
     },
     normalMode(state) {
       state.editable = false;
+    },
+  },
+
+  actions: {
+    editMode({ commit }) {
+      commit('editMode');
+    },
+
+    normalMode({ commit }) {
+      commit('normalMode');
     },
   },
 });

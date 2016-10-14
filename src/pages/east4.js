@@ -11,4 +11,3 @@ export default Vue.extend({
     'shima': shima
   },
 });
-

@@ -20,22 +20,27 @@ const Comicket = Vue.extend({
 
   data: function data() {
     return {
-      editable: store.state.editable,
       editableClass: '',
     };
   },
 
+  computed: {
+    editable() {
+      return store.state.editable;
+    },
+
+    editableClass() {
+      return this.editable ? 'editable' : '';
+    },
+  },
+
   methods: {
     editMode() {
-      store.commit('editMode');
-      this.editable = store.state.editable;
-      this.editableClass = 'editable';
+      store.dispatch('editMode');
     },
 
     normalMode() {
-      store.commit('normalMode');
-      this.editable = store.state.editable;
-      this.editableClass = '';
+      store.dispatch('normalMode');
     },
   },
 });

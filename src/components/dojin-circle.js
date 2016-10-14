@@ -1,8 +1,17 @@
 import Vue from 'vue';
+import salert from 'sweetalert2';
+
+import store from '../vuex/store';
 import template from './dojin-circle.html';
 import './dojin-circle.scss';
 
 export default Vue.extend({
+  mounted: function ready() {
+    if (localStorage[(`${this.shimaId},${this.circleId}`)]) {
+      this.clazz = localStorage[(`${this.shimaId},${this.circleId}`)];
+    }
+  },
+
   template,
 
   data: function data() {
@@ -10,11 +19,12 @@ export default Vue.extend({
       clazz: '',
     };
   },
-  props: ['shimaId', 'circle-id'],
+  props: ['shima-id', 'circle-id'],
 
   methods: {
     onClick: function onClick() {
-      console.log(this);
+      console.log(this.shimaId);
+      console.log(this.circleId);
       if (this.clazz === '') {
         this.clazz = 'btn-1';
       } else if (this.clazz === 'btn-1') {
@@ -34,6 +44,7 @@ export default Vue.extend({
       } else if (this.clazz === 'btn-8') {
         this.clazz = '';
       }
+      localStorage[`${this.shimaId},${this.circleId}`] = this.clazz;
     },
   },
 });
