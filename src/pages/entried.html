@@ -4,7 +4,11 @@
       <p>登録サークル一覧</p>
       <ul>
         <li v-for="entry in entries">
-          {{ entry.title }}
+          サークル名: {{ entry.name }}
+          <ul>
+            <li>場所: {{ entry.place }}</li>
+            <li>備考: {{ entry.remark }}</li>
+          </ul>
         </li>
       </ul>
     </div>

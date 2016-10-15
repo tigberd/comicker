@@ -10,6 +10,16 @@ export default {
       Tether: 'tether',
       'window.Tether': 'tether',
     }),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: { warnings: false },
+      sourceMap: false,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
   ],
 
   entry: {
@@ -39,11 +49,5 @@ export default {
     alias: {
       vue: 'vue/dist/vue.js',
     },
-  },
-
-  devtool: 'inline-source-map',
-
-  devServer: {
-    contentBase: './src',
   },
 };

@@ -1,12 +1,14 @@
+import $ from 'jquery';
 import Vue from 'vue';
-import salert from 'sweetalert2';
 
 import store from '../vuex/store';
 import template from './dojin-circle.html';
 import './dojin-circle.scss';
 
+import Repository from '../circle-data-repository';
+
 export default Vue.extend({
-  mounted: function ready() {
+  mounted: function mounted() {
     if (localStorage[(`${this.shimaId},${this.circleId}`)]) {
       this.clazz = localStorage[(`${this.shimaId},${this.circleId}`)];
     }
@@ -23,8 +25,13 @@ export default Vue.extend({
 
   methods: {
     onClick: function onClick() {
-      console.log(this.shimaId);
-      console.log(this.circleId);
+      if (store.state.editable) {
+        $('#circle-modal').modal('show');
+        $('#name-text').val('');
+        $('#place-text').val('');
+        $('#remark-text').val('');
+      }
+
       if (this.clazz === '') {
         this.clazz = 'btn-1';
       } else if (this.clazz === 'btn-1') {
@@ -44,7 +51,8 @@ export default Vue.extend({
       } else if (this.clazz === 'btn-8') {
         this.clazz = '';
       }
-      localStorage[`${this.shimaId},${this.circleId}`] = this.clazz;
+
+      Repository.saveCircleState(this.shimaId, this.circleId, this.clazz);
     },
   },
 });
