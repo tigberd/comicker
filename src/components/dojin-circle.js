@@ -9,9 +9,11 @@ import Repository from '../circle-data-repository';
 
 export default Vue.extend({
   mounted: function mounted() {
-    if (localStorage[(`${this.shimaId},${this.circleId}`)]) {
-      this.clazz = localStorage[(`${this.shimaId},${this.circleId}`)];
-    }
+    const entry = Repository.allCircleEntries().find(_entry => (
+      _entry.circleId == this.circleId && _entry.shimaId == this.shimaId
+    ));
+
+    entry ? this.clazz = entry.clazz : this.clazz = '';
   },
 
   template,
@@ -25,14 +27,14 @@ export default Vue.extend({
 
   methods: {
     onClick: function onClick() {
-      if (store.state.editable) {
-        $('#circle-modal').modal('show');
-        $('#name-text').val('');
-        $('#place-text').val('');
-        $('#remark-text').val('');
+      if (this.clazz === '' && !store.state.editable) {
+        return;
       }
 
-      if (this.clazz === '') {
+      const oldEntry = Repository.findCircleEntry(this.shimaId, this.circleId);
+      console.log(oldEntry);
+
+      if (this.clazz === '' || this.clazz === 'btn-0') {
         this.clazz = 'btn-1';
       } else if (this.clazz === 'btn-1') {
         this.clazz = 'btn-2';
@@ -49,10 +51,37 @@ export default Vue.extend({
       } else if (this.clazz === 'btn-7') {
         this.clazz = 'btn-8';
       } else if (this.clazz === 'btn-8') {
-        this.clazz = '';
+        this.clazz = 'btn-0';
       }
 
-      Repository.saveCircleState(this.shimaId, this.circleId, this.clazz);
+      if (store.state.editable) {
+        $('#circle-modal').modal('show');
+
+        $('#name-text').val(oldEntry ? oldEntry.name : '');
+        $('#place-text').val(oldEntry ? oldEntry.place : '');
+        $('#remark-text').val(oldEntry ? oldEntry.remark : '');
+        $('#shima-id').val(this.shimaId);
+        $('#circle-id').val(this.circleId);
+        $('#clazz').val(this.clazz);
+      } else {
+        const newEntry = {
+          name: '',
+          place: '',
+          remark: '',
+          shimaId: this.shimaId,
+          circleId: this.circleId,
+          clazz: this.clazz,
+        };
+
+        Repository.pushCircleEntry(
+          oldEntry ? oldEntry.name : '',
+          oldEntry ? oldEntry.place : '',
+          oldEntry ? oldEntry.remark : '',
+          this.shimaId,
+          this.circleId,
+          this.clazz
+        );
+      }
     },
   },
 });

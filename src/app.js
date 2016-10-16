@@ -57,8 +57,11 @@ window.onload = () => {
     const name = $('#name-text').val();
     const place = $('#place-text').val();
     const remark = $('#remark-text').val();
+    const shimaId = $('#shima-id').val();
+    const circleId = $('#circle-id').val();
+    const clazz = $('#clazz').val();
 
-    Repository.pushCircleEntry(name, place, remark);
+    Repository.pushCircleEntry(name, place, remark, shimaId, circleId, clazz);
 
     $('#circle-modal').modal('hide');
   });
