@@ -60,8 +60,14 @@ window.onload = () => {
     const shimaId = $('#shima-id').val();
     const circleId = $('#circle-id').val();
     const clazz = $('#clazz').val();
-
-    Repository.pushCircleEntry(name, place, remark, shimaId, circleId, clazz);
+    store.dispatch('pushCircleEntry', {
+      name,
+      place,
+      remark,
+      shimaId,
+      circleId,
+      clazz
+    });
 
     $('#circle-modal').modal('hide');
   });

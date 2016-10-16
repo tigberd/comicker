@@ -20,6 +20,20 @@ export default class CircleDataRepository {
     return entries.find(entry => entry.circleId === circleId && entry.shimaId === shimaId);
   }
 
+  static deleteCircleEntry(shimaId, circleId) {
+    const entries = this.allCircleEntries();
+
+    for (let i = 0; i <= entries.length - 1; i += 1) {
+      if (entries[i].circleId === circleId && entries[i].shimaId === shimaId) {
+        entries.splice(i, 1);
+        i -= 1;
+      }
+    }
+
+    localStorage.clear();
+    localStorage.circleEntries = JSON.stringify(entries);
+  }
+
   static pushCircleEntry(name, place, remark, shimaId, circleId, clazz) {
     const newEntry = {
       name,

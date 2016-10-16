@@ -9,11 +9,15 @@ import Repository from '../circle-data-repository';
 
 export default Vue.extend({
   mounted: function mounted() {
-    const entry = Repository.allCircleEntries().find(_entry => (
-      _entry.circleId == this.circleId && _entry.shimaId == this.shimaId
+    const entry = store.state.entries.find(_entry => (
+      _entry.circleId === this.circleId && _entry.shimaId === this.shimaId
     ));
 
-    entry ? this.clazz = entry.clazz : this.clazz = '';
+    if (entry) {
+      this.clazz = entry.clazz;
+    } else {
+      this.clazz = '';
+    }
   },
 
   template,
@@ -32,7 +36,6 @@ export default Vue.extend({
       }
 
       const oldEntry = Repository.findCircleEntry(this.shimaId, this.circleId);
-      console.log(oldEntry);
 
       if (this.clazz === '' || this.clazz === 'btn-0') {
         this.clazz = 'btn-1';
@@ -64,23 +67,14 @@ export default Vue.extend({
         $('#circle-id').val(this.circleId);
         $('#clazz').val(this.clazz);
       } else {
-        const newEntry = {
-          name: '',
-          place: '',
-          remark: '',
+        store.dispatch('pushCircleEntry', {
+          name: oldEntry ? oldEntry.name : '',
+          place: oldEntry ? oldEntry.place : '',
+          remark: oldEntry ? oldEntry.remark : '',
           shimaId: this.shimaId,
           circleId: this.circleId,
           clazz: this.clazz,
-        };
-
-        Repository.pushCircleEntry(
-          oldEntry ? oldEntry.name : '',
-          oldEntry ? oldEntry.place : '',
-          oldEntry ? oldEntry.remark : '',
-          this.shimaId,
-          this.circleId,
-          this.clazz
-        );
+        });
       }
     },
   },

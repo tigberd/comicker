@@ -2,15 +2,20 @@
   <div class="card m-t-1">
     <div class="card-block">
       <p>登録サークル一覧</p>
-      <ul>
-        <li v-for="entry in entries">
-          サークル名: {{ entry.name }}
-          <ul>
-            <li>場所: {{ entry.place }}</li>
-            <li>備考: {{ entry.remark }}</li>
-          </ul>
-        </li>
-      </ul>
+      <hr />
+      <template v-for="entry in entries">
+        <ul>
+          <li >
+            サークル名: {{ entry.name }}
+            <ul>
+              <li>場所: {{ entry.place }}</li>
+              <li>備考: {{ entry.remark }}</li>
+            </ul>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-danger btn-sm" @click.prevent="deleteMemo($event, entry)">削除</button>
+        <hr />
+      </template>
     </div>
   </div>
 </div>
