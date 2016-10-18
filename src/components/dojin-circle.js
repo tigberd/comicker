@@ -1,5 +1,5 @@
-import $ from 'jquery';
 import Vue from 'vue';
+import { modal } from 'vue-strap';
 
 import store from '../vuex/store';
 import template from './dojin-circle.html';
@@ -22,9 +22,17 @@ export default Vue.extend({
 
   template,
 
+  components: {
+    modal,
+  },
+
   data: function data() {
     return {
+      name: '',
+      place: '',
+      remark: '',
       clazz: '',
+      showModal: false,
     };
   },
   props: ['shima-id', 'circle-id'],
@@ -37,6 +45,43 @@ export default Vue.extend({
 
       const oldEntry = Repository.findCircleEntry(this.shimaId, this.circleId);
 
+      if (store.state.editable) {
+        // 編集モードの場合
+        this.showModal = true;
+        this.name = oldEntry ? oldEntry.name : '';
+        this.place = oldEntry ? oldEntry.place : '';
+        this.remark = oldEntry ? oldEntry.remark : '';
+        this.shimaId = this.shimaId;
+        this.circleId = this.circleId;
+      } else {
+        // 通常モードの場合
+        this.changeClazz();
+        store.dispatch('pushCircleEntry', {
+          name: oldEntry ? oldEntry.name : '',
+          place: oldEntry ? oldEntry.place : '',
+          remark: oldEntry ? oldEntry.remark : '',
+          shimaId: this.shimaId,
+          circleId: this.circleId,
+          clazz: this.clazz,
+        });
+      }
+    },
+
+    onOkClick: function onOkClick() {
+      this.changeClazz();
+      store.dispatch('pushCircleEntry', {
+        name: this.name,
+        place: this.place,
+        remark: this.remark,
+        shimaId: this.shimaId,
+        circleId: this.circleId,
+        clazz: this.clazz,
+      });
+
+      this.showModal = false;
+    },
+
+    changeClazz() {
       if (this.clazz === '' || this.clazz === 'btn-0') {
         this.clazz = 'btn-1';
       } else if (this.clazz === 'btn-1') {
@@ -55,26 +100,6 @@ export default Vue.extend({
         this.clazz = 'btn-8';
       } else if (this.clazz === 'btn-8') {
         this.clazz = 'btn-0';
-      }
-
-      if (store.state.editable) {
-        $('#circle-modal').modal('show');
-
-        $('#name-text').val(oldEntry ? oldEntry.name : '');
-        $('#place-text').val(oldEntry ? oldEntry.place : '');
-        $('#remark-text').val(oldEntry ? oldEntry.remark : '');
-        $('#shima-id').val(this.shimaId);
-        $('#circle-id').val(this.circleId);
-        $('#clazz').val(this.clazz);
-      } else {
-        store.dispatch('pushCircleEntry', {
-          name: oldEntry ? oldEntry.name : '',
-          place: oldEntry ? oldEntry.place : '',
-          remark: oldEntry ? oldEntry.remark : '',
-          shimaId: this.shimaId,
-          circleId: this.circleId,
-          clazz: this.clazz,
-        });
       }
     },
   },

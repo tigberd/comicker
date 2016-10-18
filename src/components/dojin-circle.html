@@ -1,1 +1,27 @@
-<button type="button" class="store btn btn-sm" @click="onClick" :class="clazz" />
+<div>
+  <button type="button" class="store btn btn-sm" @click="onClick" :class="clazz"></button>
+  <modal :show.sync="showModal" ok-text="保存" cancel-text="閉じる" :callback="onOkClick">
+    <div slot="modal-header" class="modal-header">
+      <h4 class="modal-title">サークル情報入力</h4>
+    </div>
+    <div slot="modal-body" class="modal-body">
+      <div class="form-group text-xs-left">
+        <label for="name-text" class="form-control-label">サークル名:</label>
+        <input :name="name" type="text" class="form-control" id="name-text">
+      </div>
+      <div class="form-group text-xs-left">
+        <label for="place-text" class="form-control-label">場所:</label>
+        <input :place="place" type="text" class="form-control" id="place-text">
+      </div>
+      <div class="form-group text-xs-left">
+        <label for="remark-text" class="form-control-label">備考:</label>
+        <input :remark="remark" type="text" class="form-control" id="remark-text">
+      </div>
+      <div>
+        <input :shima-id="shimaId" type="hidden" id="shima-id" value="">
+        <input :circle-id="circleId" type="hidden" id="circle-id" value="">
+        <input type="hidden" id="clazz" value="">
+      </div>
+    </div>
+  </modal>
+</div>
