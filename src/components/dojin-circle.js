@@ -81,6 +81,10 @@ export default Vue.extend({
       this.showModal = false;
     },
 
+    onCancelClick: function onCancelClick() {
+      this.showModal = false;
+    },
+
     changeClazz() {
       if (this.clazz === '' || this.clazz === 'btn-0') {
         this.clazz = 'btn-1';
