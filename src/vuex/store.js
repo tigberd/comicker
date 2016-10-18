@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    editable: false,
+    editable: true,
     entries: Repository.allCircleEntries(),
   },
   mutations: {
