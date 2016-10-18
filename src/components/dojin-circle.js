@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import { modal } from 'vue-strap';
 
 import store from '../vuex/store';
 import template from './dojin-circle.html';
@@ -21,10 +20,6 @@ export default Vue.extend({
   },
 
   template,
-
-  components: {
-    modal,
-  },
 
   data: function data() {
     return {
