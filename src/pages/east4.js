@@ -8,6 +8,6 @@ export default Vue.extend({
   template,
 
   components: {
-    'shima': shima
+    shima,
   },
 });
