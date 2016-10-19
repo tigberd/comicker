@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import salert from 'sweetalert';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
@@ -21,6 +22,9 @@ const Comicket = Vue.extend({
   data: function data() {
     return {
       editableClass: '',
+      showModal: false,
+      importData: '',
+      exportData: '',
     };
   },
 
@@ -41,6 +45,23 @@ const Comicket = Vue.extend({
 
     normalMode() {
       store.dispatch('normalMode');
+    },
+
+    importExportMode() {
+      this.showModal = true;
+      this.exportData = localStorage.circleEntries;
+    },
+
+    clickImport() {
+      salert({
+        title: 'データのインポート',
+        text: '既存のメモは削除されます。本当にインポートしてしてよろしいですか？',
+        type: 'warning',
+        showCancelButton: true,
+      }, () => {
+        localStorage.circleEntries = this.importData;
+        location.reload();
+      });
     },
   },
 });

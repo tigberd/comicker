@@ -44,6 +44,33 @@
         <button class="btn btn-outline-info" type="submit" @click.prevent="normalMode()">通常モードにする</button>
       </form>
     </template>
+
+    <form class="form-inline pull-xs-right m-r-1">
+      <button class="btn btn-outline-info" type="submit" @click.prevent="importExportMode()">インポート・エクスポート</button>
+    </form>
   </nav>
   <router-view></router-view>
+  <div v-show="showModal" class="modal-mask" transition="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">エクスポート</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group text-xs-left">
+            <label for="import-text" class="form-control-label">インポート:</label>
+            <textarea v-model="importData" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="form-group text-xs-left">
+            <label for="export-text" class="form-control-label">エクスポート:</label>
+            <textarea v-model="exportData" class="form-control" rows="3" readonly></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" @click="showModal = false">閉じる</button>
+          <button type="button" class="btn btn-danger" @click="clickImport()">インポート</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

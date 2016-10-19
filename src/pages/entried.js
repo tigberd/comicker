@@ -25,8 +25,7 @@ export default Vue.extend({
         text: '本当に削除してよろしいですか？',
         type: 'warning',
         showCancelButton: true,
-      }, () => store.dispatch('deleteCircleEntry', memo)
-      );
+      }, () => store.dispatch('deleteCircleEntry', memo));
     },
   },
 });
