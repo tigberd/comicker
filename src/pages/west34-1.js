@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import shima from '../components/shima-w';
 
-import template from './west1.html';
+import template from './west34-1.html';
 
 export default Vue.extend({
   template,

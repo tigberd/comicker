@@ -8,7 +8,7 @@ import East3 from './pages/east3';
 import East4 from './pages/east4';
 import East5 from './pages/east5';
 import East6 from './pages/east6';
-import West1 from './pages/west1';
+import West34_1 from './pages/west34-1';
 
 Vue.use(VueRouter);
 
@@ -20,7 +20,7 @@ const routes = [
   { path: '/east4', component: East4 },
   { path: '/east5', component: East5 },
   { path: '/east6', component: East6 },
-  { path: '/west1', component: West1 },
+  { path: '/west34-1', component: West34_1 },
 ];
 
 export default new VueRouter({
