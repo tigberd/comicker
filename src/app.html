@@ -35,22 +35,21 @@
     </ul>
 
     <div class="clearfix">
-      <form class="form-inline pull-xs-right">
+      <form class="form-inline float-xs-right">
         <button class="btn btn-outline-info" type="submit" @click.prevent="importExportMode()">インポート・エクスポート</button>
       </form>
     </div>
 
     <template v-if="editable === false">
-      <form class="form-inline pull-xs-right m-t-1">
+      <form class="form-inline float-xs-right mt-1">
         <button class="btn btn-outline-info" type="submit" @click.prevent="editMode()">編集モードにする</button>
       </form>
     </template>
     <template v-if="editable === true">
-      <form class="form-inline pull-xs-right m-t-1">
+      <form class="form-inline float-xs-right mt-1">
         <button class="btn btn-outline-info" type="submit" @click.prevent="normalMode()">通常モードにする</button>
       </form>
     </template>
-
   </nav>
 
   <router-view></router-view>
