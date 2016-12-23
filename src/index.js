@@ -10,7 +10,7 @@ import template from './app.html';
 import './app.scss';
 import './pages/east.scss';
 
-const Comicket = Vue.extend({
+const Comicker = Vue.extend({
   template,
 
   components: {
@@ -19,5 +19,5 @@ const Comicket = Vue.extend({
 });
 
 window.onload = () => {
-  new Comicket({ router }).$mount('#app');
+  new Comicker({ router }).$mount('#app');
 };
