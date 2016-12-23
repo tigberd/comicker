@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import shimaPlus from '../components/shima-plus';
+import shima from '../components/shima-w';
 
 import template from './west1.html';
 
@@ -8,6 +8,6 @@ export default Vue.extend({
   template,
 
   components: {
-    'shima-plus': shimaPlus,
+    'shima': shima,
   },
 });

@@ -2,8 +2,8 @@ import Vue from 'vue';
 
 import dojinCircle from './dojin-circle';
 
-import template from './shima.html';
-import './shima.scss';
+import template from './shima-e.html';
+import './shima-e.scss';
 
 export default Vue.extend({
   template,
