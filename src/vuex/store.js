@@ -10,6 +10,7 @@ export default new Vuex.Store({
     editable: true,
     entries: Repository.allCircleEntries(),
   },
+
   mutations: {
     editMode(state) {
       state.editable  = true;
