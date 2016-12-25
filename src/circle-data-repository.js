@@ -12,7 +12,13 @@ export default class CircleDataRepository {
     if (!circleEntries) {
       circleEntries = '[]';
     }
-    return JSON.parse(circleEntries);
+
+    try {
+      return JSON.parse(circleEntries);
+    } catch(e) {
+      localStorage.circleEntries = '';
+      return [];
+    }
   }
 
   static findCircleEntry(shimaId, circleId) {
